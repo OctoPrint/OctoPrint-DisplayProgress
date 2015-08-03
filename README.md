@@ -1,6 +1,8 @@
 # OctoPrint-DisplayProgress
 
-**TODO:** Describe what your plugin does.
+Displays the print progress on the printer's display.
+
+![Example](http://i.imgur.com/F4m2QlB.jpg)
 
 ## Setup
 
@@ -9,9 +11,13 @@ or manually using this URL:
 
     https://github.com/OctoPrint/OctoPrint-DisplayProgress/archive/master.zip
 
-**TODO:** Describe how to install your plugin, if more needs to be done than just installing it via pip or through
-the plugin manager.
-
 ## Configuration
 
-**TODO:** Describe your plugin's configuration options (if any).
+``` yaml
+plugins:
+  displayprogress:
+    # The message to display. Placeholders:
+    # - bar: a progress bar, e.g. [######    ]
+    # - progress: the current progress as an integer between 1 and 100
+    message: '{bar} {progress:>3}%%'
+```
