@@ -10,7 +10,7 @@ class DisplayProgressPlugin(octoprint.plugin.ProgressPlugin,
 
 	def get_settings_defaults(self):
 		return dict(
-			message="{bar} {progress:>3}%%"
+			message="{bar} {progress:>3}%"
 		)
 
 	##~~ Softwareupdate hook
