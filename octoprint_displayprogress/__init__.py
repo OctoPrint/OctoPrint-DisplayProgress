@@ -17,7 +17,7 @@ class DisplayProgressPlugin(octoprint.plugin.ProgressPlugin,
 
 	def get_update_information(self):
 		return dict(
-			requestspinner=dict(
+			displayprogress=dict(
 				displayName="DisplayProgress Plugin",
 				displayVersion=self._plugin_version,
 
