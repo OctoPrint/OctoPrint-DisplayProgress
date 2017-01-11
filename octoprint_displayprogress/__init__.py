@@ -2,11 +2,13 @@
 from __future__ import absolute_import
 
 import octoprint.plugin
+import octoprint.events
 
 class DisplayProgressPlugin(octoprint.plugin.ProgressPlugin,
+                            octoprint.plugin.EventHandlerPlugin,
                             octoprint.plugin.SettingsPlugin):
 
-	##~~ Settings
+	##~~ SettingsPlugin
 
 	def get_settings_defaults(self):
 		return dict(
@@ -32,12 +34,28 @@ class DisplayProgressPlugin(octoprint.plugin.ProgressPlugin,
 			)
 		)
 
-	##~~ Progress
+	##~~ EventHandlerPlugin
+
+	def on_event(self, event, payload):
+		if event == octoprint.events.Events.PRINT_STARTED:
+			self._send_message(payload["origin"], payload["path"], 0)
+		elif event == octoprint.events.Events.PRINT_DONE:
+			self._send_message(payload["origin"], payload["path"], 100)
+
+	##~~ ProgressPlugin
 
 	def on_print_progress(self, storage, path, progress):
 		if not self._printer.is_printing():
 			return
-		message = self._settings.get(["message"]).format(progress=progress, storage=storage, path=path, bar=self.__class__._progress_bar(progress))
+		self._send_message(storage, path, progress)
+
+	##~~ helpers
+
+	def _send_message(self, storage, path, progress):
+		message = self._settings.get(["message"]).format(progress=progress,
+		                                                 storage=storage,
+		                                                 path=path,
+		                                                 bar=self.__class__._progress_bar(progress))
 		self._printer.commands("M117 {}".format(message))
 
 	@classmethod
