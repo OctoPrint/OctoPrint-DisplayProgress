@@ -1,12 +1,6 @@
-**⚠ Up for adoption! ⚠**
-
-I have my hands way too full with OctoPrint's maintenance to give this plugin the attention it needs. Hence I'm looking for a new maintainer to adopt it. [Please get in touch here](https://github.com/OctoPrint/OctoPrint-DisplayProgress/issues/10).
-
----
-
 # OctoPrint-DisplayProgress
 
-Displays the print progress on the printer's display.
+Displays the print progress on the printer's display using M117 gcode command.
 
 ![Example](http://i.imgur.com/F4m2QlB.jpg)
 
