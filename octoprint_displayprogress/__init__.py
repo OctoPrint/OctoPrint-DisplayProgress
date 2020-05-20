@@ -65,6 +65,7 @@ class DisplayProgressPlugin(octoprint.plugin.ProgressPlugin,
 		return "[{}{}]".format(hashes, spaces)
 
 __plugin_name__ = "DisplayProgress"
+__plugin_pythoncompat__ = ">=2.7,<4"
 
 def __plugin_load__():
 	global __plugin_implementation__
